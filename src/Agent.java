@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,6 +6,9 @@ import java.util.List;
  * Created by atanakar on 14/09/16.
  */
 public class Agent {
+
+    Action act1 = new Action(1);
+    Action act2 = new Action(2);
 
     Action lastAction;
 
@@ -15,15 +19,22 @@ public class Agent {
     ArrayList<Action> currentPattern = new ArrayList<Action>();
 
     public Agent() {
-        ArrayList<Action> p = new ArrayList<Action>(); p.add(new Action(1));
+        ArrayList<Action> p = new ArrayList<Action>(); p.add(act1);
         potentialPatterns.add(p);
-        p = new ArrayList<Action>(); p.add(new Action(2));
+        p = new ArrayList<Action>(); p.add(act2);
         potentialPatterns.add(p);
     }
 
     boolean testGood = false;
 
     public Action chooseAction() {
+        printPattern(currentPattern, "currentPattern");
+
+        printPattern(goodPattern, "goodPattern");
+
+        for (ArrayList<Action> patt : potentialPatterns)
+            printPattern(patt, "potentialPattern");
+
 
         if (goodPattern != null) { //Si on suit un pattern bon
             lastAction = followPattern(goodPattern);
@@ -32,10 +43,13 @@ public class Agent {
 
         else if (potentialPatterns.size() > 0) { //Si on suit un pattern potentiel
             lastAction = followPattern(potentialPatterns.get(0));
-            potentialPatterns.remove(0);
+            //potentialPatterns.remove(0);
         }
 
-        else lastAction = null; //Ceci n'est pas censé se produire
+        else {
+            lastAction = null; //Ceci n'est pas censé se produire
+            System.out.println("ERROR : RETURNING NULL ACTION");
+        }
 
         return lastAction;
     }
@@ -45,28 +59,72 @@ public class Agent {
 
         if (res.value) { //Si le réultat est bon
 
-            if (!testGood) { //Si on était en potentiel on passe en bon, si on était en bon on ne fait rien (on continue le test)
+            if (!testGood && (potentialPatterns.size() == 0 || currentPattern.size() == potentialPatterns.get(0).size() - 1)) {
+                //Si on était en potentiel on passe en bon, si on était en bon on ne fait rien (on continue le test)
                 currentPattern.add(lastAction);
-                goodPattern = currentPattern;
+                goodPattern = new ArrayList<Action>(currentPattern);
+                potentialPatterns = new ArrayList<ArrayList<Action>>();
+                //System.out.println("CLEARED POTENTIAL PATTERNS");
                 return;
             }
+            else
+                currentPattern.add(lastAction);
         }
 
-        else { //Si le résutat est mauvais
-                if (testGood) { //Si on est en vérification de pattern
+        else { //Si le résultat est mauvais
+            if (testGood) { //Si on est en vérification de pattern
+                if (goodPattern.size() < currentPattern.size() ) {
+                    goodPattern = new ArrayList<Action>(currentPattern);
+                    currentPattern = new ArrayList<Action>();
+                }
+                else {
                     testGood = false;
-                    potentialPatterns = new ArrayList<ArrayList<Action>>();
 
-                    ArrayList<Action> potPattern = new ArrayList<Action>(currentPattern); potPattern.add(new Action(1));
+                    ArrayList<Action> potPattern = new ArrayList<Action>(currentPattern);
+                    potPattern.add(act1);
                     potentialPatterns.add(potPattern); // On ajoute le fils avec Action 1
 
-                    potPattern = new ArrayList<Action>(currentPattern); potPattern.add(new Action(1));
+                    potPattern = new ArrayList<Action>(currentPattern);
+                    potPattern.add(act2);
                     potentialPatterns.add(potPattern); // On ajoute le fils avec Action 2
 
                     goodPattern = null;
-                } else //Si on est pas en vérification de pattern alors le pattern expérimental est mauvais
-                    potentialPatterns.remove(0);
+                }
             }
+            else { //Si on est pas en vérification de pattern alors le pattern expérimental est mauvais
+                potentialPatterns.remove(0);
+                System.out.println("REMOVED FIRST POTENTIAL PATTERN");
+            }
+            currentPattern = new ArrayList<Action>();
+        }
+    }
+
+    public Action followPattern(ArrayList<Action> patt) {
+        if (currentPattern == null || currentPattern.size() == 0)
+            return patt.get(0);
+        int index = 0;
+        for (int i = 0; i < currentPattern.size(); i++) {
+            if (currentPattern.get(i) != patt.get(i%patt.size())) {
+                System.out.println("ERROR : RETURNED NULL ACTION IN FOLLOWPATTERN");
+                return null;
+            }
+            index ++;
+        }
+        return patt.get(index%patt.size());
+    }
+
+    public void printPattern(ArrayList<Action> patt, String title) {
+        String str = "Pattern " + title + " : ";
+
+        if (patt == null) {
+            str += "null";
+        }
+        else {
+            for (Action a : patt)
+                str += a.toString() + " -> ";
+        }
+
+        System.out.println(str);
     }
 
 }
