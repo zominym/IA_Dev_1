@@ -29,7 +29,7 @@ public class Environment {
             return new Result(false);
         }
 
-        if (streak == 2 && exp.tag == 2) {
+        if (streak == 2 && exp.tag == 1) {
             streak = 0;
             return new Result(true);
         }
