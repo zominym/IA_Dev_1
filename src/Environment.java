@@ -11,7 +11,7 @@ public class Environment {
 
     public Result eval(Action exp) {
 
-        if (streak == 0 && exp.tag == 1) {
+        if (streak == 0 && exp.tag == 2) {
             streak++;
             return new Result(true);
         }

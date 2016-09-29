@@ -80,13 +80,22 @@ public class Agent {
                 else {
                     testGood = false;
 
+//                    ArrayList<Action> potPattern = new ArrayList<Action>(currentPattern);
+//                    potPattern.add(act1);
+//                    potentialPatterns.add(potPattern); // On ajoute le fils avec Action 1
+//
+//                    potPattern = new ArrayList<Action>(currentPattern);
+//                    potPattern.add(act2);
+//                    potentialPatterns.add(potPattern); // On ajoute le fils avec Action 2
+
                     ArrayList<Action> potPattern = new ArrayList<Action>(currentPattern);
-                    potPattern.add(act1);
+                    if (lastAction.equals(act1))
+                        potPattern.add(act2);
+                    else
+                        potPattern.add(act1);
                     potentialPatterns.add(potPattern); // On ajoute le fils avec Action 1
 
-                    potPattern = new ArrayList<Action>(currentPattern);
-                    potPattern.add(act2);
-                    potentialPatterns.add(potPattern); // On ajoute le fils avec Action 2
+
 
                     goodPattern = null;
                 }

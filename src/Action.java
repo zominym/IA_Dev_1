@@ -12,4 +12,8 @@ public class Action {
     public String toString() {
         return "" + tag;
     }
+
+    public boolean equals(Action act) {
+        return act.tag == this.tag;
+    }
 }
