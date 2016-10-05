@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
 
         Agent agt = new Agent();
-        Environment env = new Environment();
+        IEnvironment env = new Environment3();
 
         for (int i = 0; i < 20; i++) {
             System.out.println("LOOP NUMBER ------------ " + i);
