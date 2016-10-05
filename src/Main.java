@@ -2,8 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Agent agt = new Agent();
         IEnvironment env = new Environment3();
+        Agent2 agt = new Agent2();
 
         for (int i = 0; i < 20; i++) {
             System.out.println("LOOP NUMBER ------------ " + i);
