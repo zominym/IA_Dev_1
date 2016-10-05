@@ -5,7 +5,20 @@ import java.util.List;
 /**
  * Created by atanakar on 14/09/16.
  */
-public class Agent {
+
+
+/**
+ * Explication de code
+ * Traces
+ * Explication comportement
+ *
+ * Améliorations ?
+ */
+
+
+
+
+public class Agent2 {
 
     Action act1 = new Action(1);
     Action act2 = new Action(2);
@@ -18,7 +31,7 @@ public class Agent {
 
     ArrayList<Action> currentPattern = new ArrayList<Action>();
 
-    public Agent() {
+    public Agent2() {
         ArrayList<Action> p = new ArrayList<Action>(); p.add(act1);
         potentialPatterns.add(p);
         p = new ArrayList<Action>(); p.add(act2);
@@ -60,7 +73,7 @@ public class Agent {
         if (res.value) { //Si le réultat est bon
 
             if (!testGood && (potentialPatterns.size() == 0 || currentPattern.size() == potentialPatterns.get(0).size() - 1)) {
-                //Si on était en potentiel on passe en bon, si on était en bon on ne fait rien (on continue le test)
+                //Si on était en potentiel on passe en vérification, si on était en vérification on ne fait rien (on continue le test)
                 currentPattern.add(lastAction);
                 goodPattern = new ArrayList<Action>(currentPattern);
                 potentialPatterns = new ArrayList<ArrayList<Action>>();
