@@ -8,12 +8,19 @@ import com.polytech.zguyl.iadev.*;
 
 public class Environment2 implements IEnvironment {
 
-    private Action lastAction = Action.FOWARD;
+    private Action lastAction = null;
 
     @Override
     public Result react(Action action) {
-        if(action == lastAction)
-            return Result.STAND;
-        return Result.MOVE;
+        Result ret;
+        if(lastAction == null || action != lastAction) {
+            ret = Result.R2;
+            lastAction = action;
+        }
+        else {
+            ret = Result.R1;
+            lastAction = null;
+        }
+        return ret;
     }
 }

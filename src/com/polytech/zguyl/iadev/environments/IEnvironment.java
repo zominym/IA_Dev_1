@@ -7,7 +7,7 @@ import com.polytech.zguyl.iadev.*;
  */
 public interface IEnvironment {
 
-    Action[] expected = {Action.FOWARD, Action.BACKWARD};
+    Action[] expected = {Action.A1, Action.A2};
 
     Result react(Action action);
 

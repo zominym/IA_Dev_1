@@ -10,6 +10,6 @@ public class Environment1 implements IEnvironment {
 
     @Override
     public Result react(Action action) {
-        return (action == expected[0]) ? Result.MOVE : Result.STAND;
+        return (action == expected[0]) ? Result.R1 : Result.R2;
     }
 }

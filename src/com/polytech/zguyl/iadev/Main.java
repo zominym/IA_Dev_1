@@ -29,11 +29,14 @@ public class Main {
             interactionValue = motivation.evaluate(action, result);
             agent.learn(action, result, interactionValue);
 
-            System.out.println(action.toString() + " -> " + result.toString());
+            System.out.println(action.toString() + " -> " + result.toString() + " : " + interactionValue);
 
             actionString += action.toInt() + " ";
             resultString += result.toInt() + " ";
-            valueString += interactionValue + " ";
+            if (interactionValue == 1)
+                valueString += "1 ";
+            else
+                valueString += "0 ";
         }
 
         System.out.println("ACTION | " + actionString);

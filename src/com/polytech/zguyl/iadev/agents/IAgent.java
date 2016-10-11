@@ -10,8 +10,8 @@ import java.util.HashMap;
  */
 public interface IAgent {
 
-    Action act1 = Action.FOWARD;
-    Action act2 = Action.BACKWARD;
+    Action act1 = Action.A1;
+    Action act2 = Action.A2;
 
     Action chooseAction();
     void learn(Action action, Result result, int interactionValue);

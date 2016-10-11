@@ -6,8 +6,8 @@ package com.polytech.zguyl.iadev;
 
 public enum Action {
 
-    FOWARD("Foward"),
-    BACKWARD("Backward");
+    A1("A1"),
+    A2("A2");
 
     private String tag;
 
@@ -19,9 +19,9 @@ public enum Action {
     public String toString(){ return tag(); }
 
     public int toInt() {
-        if (this == FOWARD)
+        if (this == A1)
             return 1;
-        if (this == BACKWARD)
+        if (this == A2)
             return 2;
         else return 0;
     }

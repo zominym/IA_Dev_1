@@ -15,16 +15,16 @@ public class Environment5 implements IEnvironment {
         cpt++;
         if(cpt < 10){
             if(action == expected[0])
-                return Result.MOVE;
-            return Result.STAND;
+                return Result.R1;
+            return Result.R2;
         }
         else if (cpt < 20){
             if(action == expected[1])
-                return Result.MOVE;
-            return Result.STAND;
+                return Result.R1;
+            return Result.R2;
         }
         else if (action == expected[0])
-            return Result.MOVE;
-        return Result.STAND;
+            return Result.R1;
+        return Result.R2;
     }
 }
