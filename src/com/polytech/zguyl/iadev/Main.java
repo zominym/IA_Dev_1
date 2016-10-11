@@ -37,8 +37,8 @@ public class Main {
             valueString += interactionValue + " ";
         }
 
-        System.out.println(actionString);
-        System.out.println(resultString);
-        System.out.println(valueString);
+        System.out.println("ACTION | " + actionString);
+        System.out.println("RESULT | " + resultString);
+        System.out.println("VALUE  | " + valueString);
     }
 }
