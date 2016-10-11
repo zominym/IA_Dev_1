@@ -3,13 +3,12 @@
  */
 package com.polytech.zguyl.iadev.motivations;
 
-import com.polytech.zguyl.iadev.Interaction;
-import com.polytech.zguyl.iadev.Result;
+import com.polytech.zguyl.iadev.*;
 
 public class Motivation4 implements IMotivation {
     @Override
-    public int evaluate(Interaction interaction) {
-        if(interaction.getResult() == Result.R2)
+    public int evaluate(Action action, Result result) {
+        if(result == Result.R2)
             return 1;
         return -1;
     }

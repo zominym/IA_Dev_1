@@ -70,4 +70,15 @@ public class CompositeInteraction {
         return true;
     }
 
+    public boolean isSameAsPrevious(CompositeInteraction previousInteraction) {
+        if(previous == null)
+            return false;
+        if(previousInteraction == null)
+            return false;
+        if(previousInteraction.getAction() != previous.action)
+            return false;
+        if(previousInteraction.getResult() != previous.result)
+            return false;
+        return true;
+    }
 }

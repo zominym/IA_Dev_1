@@ -16,8 +16,8 @@ public class Agent2 implements IAgent {
 
     public Agent2(){
         super();
-        actionsToTry.add(Action.FOWARD);
-        actionsToTry.add(Action.BACKWARD);
+        actionsToTry.add(Action.A1);
+        actionsToTry.add(Action.A2);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Agent2 implements IAgent {
         //We're looking for every composites interactions who have the same previos interaction as we do
         activesInteractions
                 .addAll(interactions.stream()
-                        .filter(i -> i.getPrevious() == previousInteraction)
+                        .filter(i -> (i.isSameAsPrevious(previousInteraction)))
                         .collect(Collectors.toList()));
 
         ArrayList<Proposal> proposals = new ArrayList<>();
@@ -42,13 +42,17 @@ public class Agent2 implements IAgent {
                         .addProclivity(active.getWeight() * active.getNext().getNext().getValue());
             }
         }
-        Collections.sort(proposals, (o1, o2) -> o1.compareTo(o2));
+        Collections.sort(proposals);
 
-        if(proposals.size() > 0)
-            return proposals.get(0).action;
-        if(actionsToTry.size() > 0)
-            return actionsToTry.remove(0);
-        return act1;
+        if(proposals.size() > 0) {
+            for(int i = 0; i < proposals.size(); i++)
+                if(proposals.get(i).proclivity > 0)
+                    return proposals.get(i).action;
+        }
+
+        Action tmp = actionsToTry.remove(0);
+        actionsToTry.add(tmp);
+        return tmp;
     }
 
     @Override
@@ -60,7 +64,7 @@ public class Agent2 implements IAgent {
 
         //We're looking if the interaction exist already
         for (CompositeInteraction i: interactions) {
-            if(i.getAction() == action && i.getResult() == result && i.getPrevious() == previousInteraction){
+            if(i.getAction() == action && i.getResult() == result){
                 i.reinforce();
                 reinforced = true;
                 tmp = i;
@@ -82,7 +86,7 @@ public class Agent2 implements IAgent {
 
 }
 
-class Proposal {
+class Proposal implements Comparable<Proposal> {
 
     Proposal(Action a, int w, int v) {
         action = a;
@@ -92,7 +96,7 @@ class Proposal {
     Action action;
     Integer proclivity;
 
-    int compareTo(Proposal p2){
+    public int compareTo(Proposal p2){
         return proclivity.compareTo(p2.proclivity);
     }
 

@@ -8,13 +8,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment environment = new Environment2();
+        IEnvironment environment = new Environment1();
         IAgent agent = new Agent2();
-        IMotivation motivation = new Motivation1();
+        IMotivation motivation = new Motivation4();
 
         Action action;
         Result result;
-        Interaction interaction;
         int interactionValue;
 
         String actionString = "";
@@ -34,9 +33,9 @@ public class Main {
             actionString += action.toInt() + " ";
             resultString += result.toInt() + " ";
             if (interactionValue == 1)
-                valueString += "1 ";
+                valueString += "+ ";
             else
-                valueString += "0 ";
+                valueString += "- ";
         }
 
         System.out.println("ACTION | " + actionString);
