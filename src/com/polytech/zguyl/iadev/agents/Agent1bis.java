@@ -27,7 +27,7 @@ public class Agent1bis extends Agent1 {
     private boolean testGood = false;
 
     @Override
-    public void learn(Interaction interaction, int interactionValue) {
+    public void learn(Action action, Result result, int interactionValue) {
         // currentPattern.add(lastAction); Avant on faisait ceci ici mais dans le cas d'un pattern bon qui échoue on veut garder l'état avant échec
 
         if (interactionValue > 0) { //Si le réultat est bon

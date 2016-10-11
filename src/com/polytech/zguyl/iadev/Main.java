@@ -9,12 +9,11 @@ public class Main {
     public static void main(String[] args) {
 
         IEnvironment environment = new Environment2();
-        IAgent agent = new Agent1();
+        IAgent agent = new Agent2();
         IMotivation motivation = new Motivation1();
 
         Action action;
         Result result;
-        Interaction interaction;
         int interactionValue;
 
         String actionString = "";
@@ -25,9 +24,8 @@ public class Main {
 
             action = agent.chooseAction();
             result = environment.react(action);
-            interaction = new Interaction(action, result);
-            interactionValue = motivation.evaluate(interaction);
-            agent.learn(interaction, interactionValue);
+            interactionValue = motivation.evaluate(action, result);
+            agent.learn(action, result, interactionValue);
 
             System.out.println(action.toString() + " -> " + result.toString());
 

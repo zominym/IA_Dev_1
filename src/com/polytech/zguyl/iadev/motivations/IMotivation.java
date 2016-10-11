@@ -4,8 +4,8 @@
 
 package com.polytech.zguyl.iadev.motivations;
 
-import com.polytech.zguyl.iadev.Interaction;
+import com.polytech.zguyl.iadev.*;
 
 public interface IMotivation {
-    int evaluate(Interaction interaction);
+    int evaluate(Action action, Result result);
 }

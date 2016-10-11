@@ -15,6 +15,6 @@ public class Environment4 implements IEnvironment {
         cpt++;
         if((action == expected[0] && cpt < 10) || (action == expected[1] && cpt >= 10))
             return Result.MOVE;
-        return Result.CHECK;
+        return Result.STAND;
     }
 }

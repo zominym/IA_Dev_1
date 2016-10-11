@@ -13,7 +13,7 @@ public class Environment2 implements IEnvironment {
     @Override
     public Result react(Action action) {
         if(action == lastAction)
-            return Result.CHECK;
+            return Result.STAND;
         return Result.MOVE;
     }
 }

@@ -6,7 +6,7 @@ package com.polytech.zguyl.iadev;
 public enum Result {
 
     MOVE("Move"),
-    CHECK("Check"),
+    STAND("Stand"),
     HIT("Hit");
 
     private String tag;

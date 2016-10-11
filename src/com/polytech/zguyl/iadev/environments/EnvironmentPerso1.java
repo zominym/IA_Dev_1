@@ -19,7 +19,7 @@ public class EnvironmentPerso1 implements IEnvironment{
         }
         else if (streak == 0){
             streak = 0;
-            return Result.CHECK;
+            return Result.STAND;
         }
 
         if (streak == 1 && action == expected[1]) {
@@ -28,7 +28,7 @@ public class EnvironmentPerso1 implements IEnvironment{
         }
         else if (streak == 1){
             streak = 0;
-            return Result.CHECK;
+            return Result.STAND;
         }
 
         if (streak == 2 && action == expected[0]) {
@@ -37,7 +37,7 @@ public class EnvironmentPerso1 implements IEnvironment{
         }
         else {
             streak = 0;
-            return Result.CHECK;
+            return Result.STAND;
         }
 
 

@@ -17,14 +17,14 @@ public class EnvironmentPerso2 implements IEnvironment{
             if(action == expected[0])
                 ret = Result.MOVE;
             else {
-                ret = Result.CHECK;
+                ret = Result.STAND;
                 streak = 0;
             }
             streak++;
         }
         else {
             if (action == expected[1]) {
-                ret = Result.CHECK;
+                ret = Result.STAND;
                 streak = 0;
             }
             else

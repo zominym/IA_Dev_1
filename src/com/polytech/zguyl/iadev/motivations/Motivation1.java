@@ -8,8 +8,8 @@ import com.polytech.zguyl.iadev.*;
 
 public class Motivation1 implements IMotivation {
     @Override
-    public int evaluate(Interaction interaction) {
-        if(interaction.getResult() == Result.MOVE)
+    public int evaluate(Action action, Result result) {
+        if(result == Result.MOVE)
             return 1;
         return -1;
     }

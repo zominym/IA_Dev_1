@@ -4,9 +4,7 @@
 
 package com.polytech.zguyl.iadev.agents;
 
-import com.polytech.zguyl.iadev.Action;
-import com.polytech.zguyl.iadev.Interaction;
-import com.polytech.zguyl.iadev.Result;
+import com.polytech.zguyl.iadev.*;
 
 import java.util.ArrayList;
 
@@ -66,7 +64,7 @@ public class Agent1 implements IAgent {
     }
 
     @Override
-    public void learn(Interaction interaction, int interactionValue) {
+    public void learn(Action action, Result result, int interactionValue) {
         // currentPattern.add(lastAction); Avant on faisait ceci ici mais dans le cas d'un pattern bon qui échoue on veut garder l'état avant échec
 
         if (interactionValue > 0) { //Si le réultat est bon
