@@ -15,29 +15,29 @@ public class Environment3 implements IEnvironment{
 
         if (streak == 0 && action == expected[1]) {
             streak++;
-            return Result.MOVE;
+            return Result.R1;
         }
         else if (streak == 0){
             streak = 0;
-            return Result.CHECK;
+            return Result.R2;
         }
 
         if (streak == 1 && action == expected[1]) {
             streak++;
-            return Result.MOVE;
+            return Result.R1;
         }
         else if (streak == 1){
             streak = 0;
-            return Result.CHECK;
+            return Result.R2;
         }
 
         if (streak == 2 && action == expected[0]) {
             streak = 0;
-            return Result.MOVE;
+            return Result.R1;
         }
         else {
             streak = 0;
-            return Result.CHECK;
+            return Result.R2;
         }
 
 

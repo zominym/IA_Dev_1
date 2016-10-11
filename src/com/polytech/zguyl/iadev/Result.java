@@ -5,9 +5,8 @@ package com.polytech.zguyl.iadev;
 
 public enum Result {
 
-    MOVE("Move"),
-    CHECK("Check"),
-    HIT("Hit");
+    R1("R1"),
+    R2("R2");
 
     private String tag;
 
@@ -21,9 +20,9 @@ public enum Result {
     public String toString(){ return tag(); }
 
     public int toInt() {
-        if (this == MOVE)
+        if (this == R1)
             return 1;
-        if (this == CHECK)
+        if (this == R2)
             return 2;
         else return 0;
     }

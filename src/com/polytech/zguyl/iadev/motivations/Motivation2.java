@@ -9,7 +9,7 @@ import com.polytech.zguyl.iadev.*;
 public class Motivation2 implements IMotivation {
     @Override
     public int evaluate(Interaction interaction) {
-        if(interaction.getResult() == Result.CHECK)
+        if(interaction.getAction() == Action.A2)
             return 1;
         return -1;
     }

@@ -7,8 +7,8 @@ import com.polytech.zguyl.iadev.*;
  */
 public interface IAgent {
 
-    Action act1 = Action.FOWARD;
-    Action act2 = Action.BACKWARD;
+    Action act1 = Action.A1;
+    Action act2 = Action.A2;
 
     Action chooseAction();
     void learn(Interaction interaction, int interactionValue);

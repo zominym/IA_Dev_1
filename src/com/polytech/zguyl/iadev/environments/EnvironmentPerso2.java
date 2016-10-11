@@ -15,20 +15,20 @@ public class EnvironmentPerso2 implements IEnvironment{
         Result ret;
         if (streak < 10) {
             if(action == expected[0])
-                ret = Result.MOVE;
+                ret = Result.R1;
             else {
-                ret = Result.CHECK;
+                ret = Result.R2;
                 streak = 0;
             }
             streak++;
         }
         else {
             if (action == expected[1]) {
-                ret = Result.CHECK;
+                ret = Result.R2;
                 streak = 0;
             }
             else
-                ret = Result.MOVE;
+                ret = Result.R1;
             streak++;
         }
 

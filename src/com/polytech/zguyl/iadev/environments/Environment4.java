@@ -14,7 +14,7 @@ public class Environment4 implements IEnvironment {
     public Result react(Action action) {
         cpt++;
         if((action == expected[0] && cpt < 10) || (action == expected[1] && cpt >= 10))
-            return Result.MOVE;
-        return Result.CHECK;
+            return Result.R1;
+        return Result.R2;
     }
 }

@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment environment = new Environment1();
+        IEnvironment environment = new Environment2();
         IAgent agent = new Agent1();
-        IMotivation motivation = new Motivation1();
+        IMotivation motivation = new Motivation4();
 
         Action action;
         Result result;
@@ -30,11 +30,14 @@ public class Main {
             interactionValue = motivation.evaluate(interaction);
             agent.learn(interaction, interactionValue);
 
-            System.out.println(action.toString() + " -> " + result.toString());
+            System.out.println(action.toString() + " -> " + result.toString() + " : " + interactionValue);
 
             actionString += action.toInt() + " ";
             resultString += result.toInt() + " ";
-            valueString += interactionValue + " ";
+            if (interactionValue == 1)
+                valueString += "1 ";
+            else
+                valueString += "0 ";
         }
 
         System.out.println("ACTION | " + actionString);
