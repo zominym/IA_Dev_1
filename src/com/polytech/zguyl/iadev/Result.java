@@ -14,4 +14,6 @@ public class Result {
     public String toString() {
         return "" + value;
     }
+
+    public int toInt() {if (value) return 1; else return 0;}
 }

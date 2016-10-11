@@ -18,7 +18,7 @@ public class Environment5 implements IEnvironment {
                 return new Result(true);
             return new Result(false);
         }
-        else if (cpt == 10){
+        else if (cpt < 20){
             if(action == expected[1])
                 return new Result(true);
             return new Result(false);
