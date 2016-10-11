@@ -1,5 +1,7 @@
 package com.polytech.zguyl.iadev;
 
+import java.util.Objects;
+
 /**
  * Created by Vil on 11/10/2016.
  */
@@ -19,14 +21,16 @@ public class CompositeInteraction {
     public int getWeight(){return weight;}
     public String getLabel(){return label;}
     public CompositeInteraction getPrevious() {
-        if(previous == null)
+        if(previous == null){
             previous = new CompositeInteraction();
+            previous.label = "";
+        }
         return previous;
     }
     public CompositeInteraction getNext() {return next;}
     public void setNext(CompositeInteraction next) {this.next = next;}
 
-    public CompositeInteraction(){
+    private CompositeInteraction(){
 
     }
     public CompositeInteraction(CompositeInteraction previousInteraction, Action action, Result result, int value){
@@ -45,8 +49,6 @@ public class CompositeInteraction {
     public boolean isSameAsPrevious(CompositeInteraction previousInteraction) {
         if(previous == null || previousInteraction == null)
             return false;
-        if(previousInteraction.label != previous.label)
-            return false;
-        return true;
+        return previousInteraction.label.equals(previous.label);
     }
 }

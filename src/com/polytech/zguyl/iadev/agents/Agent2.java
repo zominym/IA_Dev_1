@@ -27,7 +27,7 @@ public class Agent2 implements IAgent {
         //We're looking for every composites interactions who have the same previos interaction as we do
         activesInteractions
                 .addAll(interactions.stream()
-                        .filter(i -> i.getPrevious().getLabel() == previousInteraction.getLabel())
+                        .filter(i -> i.getPrevious().getLabel().equals(previousInteraction.getLabel()))
                         .collect(Collectors.toList()));
 
 
@@ -46,9 +46,9 @@ public class Agent2 implements IAgent {
 
         //If the proposals are good, we chose one
         if(proposals.size() > 0) {
-            for(int i = 0; i < proposals.size(); i++)
-                if(proposals.get(i).getProclivity() > 0)
-                    return proposals.get(i).getAction();
+            for (Proposal proposal : proposals)
+                if (proposal.getProclivity() > 0)
+                    return proposal.getAction();
         }
 
         Action tmp = actionsToTry.remove(0);
