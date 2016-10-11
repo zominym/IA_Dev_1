@@ -18,4 +18,12 @@ public enum Action {
     @Override
     public String toString(){ return tag(); }
 
+    public int toInt() {
+        if (this == FOWARD)
+            return 1;
+        if (this == BACKWARD)
+            return 2;
+        else return 0;
+    }
+
 }

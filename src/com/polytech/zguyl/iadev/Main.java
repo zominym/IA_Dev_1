@@ -14,10 +14,12 @@ public class Main {
 
         Action action;
         Result result;
+        Interaction interaction;
         int interactionValue;
 
         String actionString = "";
         String resultString = "";
+        String valueString = "";
 
         for (int i = 0; i < 100; i++) {
             System.out.println("LOOP NUMBER ------------ " + i);
@@ -29,12 +31,13 @@ public class Main {
 
             System.out.println(action.toString() + " -> " + result.toString());
 
-            actionString += action.toString() + " ";
-            resultString += result.toString() + " ";
+            actionString += action.toInt() + " ";
+            resultString += result.toInt() + " ";
+            valueString += interactionValue + " ";
         }
 
-        System.out.println(actionString);
-        System.out.println(resultString);
-
+        System.out.println("ACTION | " + actionString);
+        System.out.println("RESULT | " + resultString);
+        System.out.println("VALUE  | " + valueString);
     }
 }

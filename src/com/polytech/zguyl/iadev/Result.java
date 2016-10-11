@@ -19,4 +19,12 @@ public enum Result {
 
     @Override
     public String toString(){ return tag(); }
+
+    public int toInt() {
+        if (this == MOVE)
+            return 1;
+        if (this == CHECK)
+            return 2;
+        else return 0;
+    }
 }
