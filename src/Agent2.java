@@ -18,7 +18,7 @@ import java.util.List;
 
 
 
-public class Agent2 {
+public class Agent2 extends AAgent {
 
     Action act1 = new Action(1);
     Action act2 = new Action(2);
