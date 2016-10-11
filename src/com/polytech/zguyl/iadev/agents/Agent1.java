@@ -1,9 +1,13 @@
-import java.util.ArrayList;
-
 /**
  * Created by atanakar on 14/09/16.
  */
 
+package com.polytech.zguyl.iadev.agents;
+
+import com.polytech.zguyl.iadev.Action;
+import com.polytech.zguyl.iadev.Result;
+
+import java.util.ArrayList;
 
 /**
  * Explication de code
@@ -16,27 +20,23 @@ import java.util.ArrayList;
 
 
 
-public class Agent2bis {
+public class Agent1 implements IAgent {
 
-    Action act1 = new Action(1);
-    Action act2 = new Action(2);
+    private Action lastAction;
 
-    Action lastAction;
+    private ArrayList<Action> goodPattern = null;
+    private ArrayList<ArrayList<Action>> potentialPatterns = new ArrayList<>();
 
-    ArrayList<Action> goodPattern = null;
-    //ArrayList<ArrayList<Action>> badPatterns = new ArrayList<ArrayList<Action>>();
-    ArrayList<ArrayList<Action>> potentialPatterns = new ArrayList<ArrayList<Action>>();
+    private ArrayList<Action> currentPattern = new ArrayList<>();
 
-    ArrayList<Action> currentPattern = new ArrayList<Action>();
-
-    public Agent2bis() {
-        ArrayList<Action> p = new ArrayList<Action>(); p.add(act1);
+    public Agent1() {
+        ArrayList<Action> p = new ArrayList<>(); p.add(act1);
         potentialPatterns.add(p);
-        p = new ArrayList<Action>(); p.add(act2);
+        p = new ArrayList<>(); p.add(act2);
         potentialPatterns.add(p);
     }
 
-    boolean testGood = false;
+    private boolean testGood = false;
 
     public Action chooseAction() {
         printPattern(currentPattern, "currentPattern");
@@ -54,7 +54,6 @@ public class Agent2bis {
 
         else if (potentialPatterns.size() > 0) { //Si on suit un pattern potentiel
             lastAction = followPattern(potentialPatterns.get(0));
-            //potentialPatterns.remove(0);
         }
 
         else {
@@ -73,10 +72,8 @@ public class Agent2bis {
             if (!testGood && (potentialPatterns.size() == 0 || currentPattern.size() == potentialPatterns.get(0).size() - 1)) {
                 //Si on était en potentiel on passe en vérification, si on était en vérification on ne fait rien (on continue le test)
                 currentPattern.add(lastAction);
-                goodPattern = new ArrayList<Action>(currentPattern);
-                potentialPatterns = new ArrayList<ArrayList<Action>>();
-                //System.out.println("CLEARED POTENTIAL PATTERNS");
-                return;
+                goodPattern = new ArrayList<>(currentPattern);
+                potentialPatterns = new ArrayList<>();
             }
             else
                 currentPattern.add(lastAction);
@@ -85,21 +82,13 @@ public class Agent2bis {
         else { //Si le résultat est mauvais
             if (testGood) { //Si on est en vérification de pattern
                 if (goodPattern.size() < currentPattern.size() ) {
-                    goodPattern = new ArrayList<Action>(currentPattern);
-                    currentPattern = new ArrayList<Action>();
+                    goodPattern = new ArrayList<>(currentPattern);
+                    currentPattern = new ArrayList<>();
                 }
                 else {
                     testGood = false;
 
-//                    ArrayList<Action> potPattern = new ArrayList<Action>(currentPattern);
-//                    potPattern.add(act1);
-//                    potentialPatterns.add(potPattern); // On ajoute le fils avec Action 1
-//
-//                    potPattern = new ArrayList<Action>(currentPattern);
-//                    potPattern.add(act2);
-//                    potentialPatterns.add(potPattern); // On ajoute le fils avec Action 2
-
-                    ArrayList<Action> potPattern = new ArrayList<Action>(currentPattern);
+                    ArrayList<Action> potPattern = new ArrayList<>(currentPattern);
                     if (lastAction.equals(act1))
                         potPattern.add(act2);
                     else
@@ -115,11 +104,11 @@ public class Agent2bis {
                 potentialPatterns.remove(0);
                 System.out.println("REMOVED FIRST POTENTIAL PATTERN");
             }
-            currentPattern = new ArrayList<Action>();
+            currentPattern = new ArrayList<>();
         }
     }
 
-    public Action followPattern(ArrayList<Action> patt) {
+    private Action followPattern(ArrayList<Action> patt) {
         if (currentPattern == null || currentPattern.size() == 0)
             return patt.get(0);
         int index = 0;
@@ -133,7 +122,7 @@ public class Agent2bis {
         return patt.get(index%patt.size());
     }
 
-    public void printPattern(ArrayList<Action> patt, String title) {
+    private void printPattern(ArrayList<Action> patt, String title) {
         String str = "Pattern " + title + " : ";
 
         if (patt == null) {

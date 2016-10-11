@@ -1,17 +1,19 @@
 /**
  * Created by atanakar on 14/09/16.
  */
-public class Environment {
 
-    static int streak = 0;
+package com.polytech.zguyl.iadev.environments;
 
-    public Environment() {
+import com.polytech.zguyl.iadev.*;
 
-    }
+public class Environment3 implements IEnvironment{
 
-    public Result eval(Action exp) {
+    private static int streak = 0;
 
-        if (streak == 0 && exp.tag == 2) {
+    @Override
+    public Result eval(Action action) {
+
+        if (streak == 0 && action == expected[1]) {
             streak++;
             return new Result(true);
         }
@@ -20,7 +22,7 @@ public class Environment {
             return new Result(false);
         }
 
-        if (streak == 1 && exp.tag == 2) {
+        if (streak == 1 && action == expected[1]) {
             streak++;
             return new Result(true);
         }
@@ -29,7 +31,7 @@ public class Environment {
             return new Result(false);
         }
 
-        if (streak == 2 && exp.tag == 1) {
+        if (streak == 2 && action == expected[0]) {
             streak = 0;
             return new Result(true);
         }

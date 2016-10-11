@@ -1,11 +1,16 @@
 /**
  * Created by atanakar on 14/09/16.
  */
-public class EnvironmentPerso2 implements IEnvironment{
+
+package com.polytech.zguyl.iadev.environments;
+
+import com.polytech.zguyl.iadev.*;
+
+public class EnvironmentPerso1 implements IEnvironment{
 
     static int streak = 0;
 
-    public EnvironmentPerso2() {
+    public EnvironmentPerso1() {
 
     }
 
