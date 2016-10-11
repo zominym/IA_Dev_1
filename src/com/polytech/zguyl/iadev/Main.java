@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment environment = new Environment2();
+        IEnvironment environment = new Environment1();
         IAgent agent = new Agent1();
         IMotivation motivation = new Motivation1();
 
@@ -19,6 +19,7 @@ public class Main {
 
         String actionString = "";
         String resultString = "";
+        String valueString = "";
 
         for (int i = 0; i < 100; i++) {
             System.out.println("LOOP NUMBER ------------ " + i);
@@ -31,12 +32,13 @@ public class Main {
 
             System.out.println(action.toString() + " -> " + result.toString());
 
-            actionString += action.toString() + " ";
-            resultString += result.toString() + " ";
+            actionString += action.toInt() + " ";
+            resultString += result.toInt() + " ";
+            valueString += interactionValue + " ";
         }
 
         System.out.println(actionString);
         System.out.println(resultString);
-
+        System.out.println(valueString);
     }
 }
