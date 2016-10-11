@@ -4,10 +4,7 @@
 
 package com.polytech.zguyl.iadev.agents;
 
-import com.polytech.zguyl.iadev.Action;
-import com.polytech.zguyl.iadev.Interaction;
-import com.polytech.zguyl.iadev.Result;
-
+import com.polytech.zguyl.iadev.*;
 import java.util.ArrayList;
 
 /**
@@ -21,49 +18,13 @@ import java.util.ArrayList;
 
 
 
-public class Agent1 implements IAgent {
+public class Agent1bis extends Agent1 {
 
-    Action lastAction;
-
-    ArrayList<Action> goodPattern = null;
-    ArrayList<ArrayList<Action>> potentialPatterns = new ArrayList<>();
-
-    ArrayList<Action> currentPattern = new ArrayList<>();
-
-    public Agent1() {
-        ArrayList<Action> p = new ArrayList<>(); p.add(act1);
-        potentialPatterns.add(p);
-        p = new ArrayList<>(); p.add(act2);
-        potentialPatterns.add(p);
+    public Agent1bis() {
+        super();
     }
 
     private boolean testGood = false;
-
-    public Action chooseAction() {
-        printPattern(currentPattern, "currentPattern");
-
-        printPattern(goodPattern, "goodPattern");
-
-        for (ArrayList<Action> patt : potentialPatterns)
-            printPattern(patt, "potentialPattern");
-
-
-        if (goodPattern != null) { //Si on suit un pattern bon
-            lastAction = followPattern(goodPattern);
-            testGood = true;
-        }
-
-        else if (potentialPatterns.size() > 0) { //Si on suit un pattern potentiel
-            lastAction = followPattern(potentialPatterns.get(0));
-        }
-
-        else {
-            lastAction = null; //Ceci n'est pas censé se produire
-            System.out.println("ERROR : RETURNING NULL ACTION");
-        }
-
-        return lastAction;
-    }
 
     @Override
     public void learn(Interaction interaction, int interactionValue) {
@@ -76,6 +37,7 @@ public class Agent1 implements IAgent {
                 currentPattern.add(lastAction);
                 goodPattern = new ArrayList<>(currentPattern);
                 potentialPatterns = new ArrayList<>();
+                //System.out.println("CLEARED POTENTIAL PATTERNS");
             }
             else
                 currentPattern.add(lastAction);
@@ -89,6 +51,14 @@ public class Agent1 implements IAgent {
                 }
                 else {
                     testGood = false;
+
+//                    ArrayList<Action> potPattern = new ArrayList<Action>(currentPattern);
+//                    potPattern.add(act1);
+//                    potentialPatterns.add(potPattern); // On ajoute le fils avec Action 1
+//
+//                    potPattern = new ArrayList<Action>(currentPattern);
+//                    potPattern.add(act2);
+//                    potentialPatterns.add(potPattern); // On ajoute le fils avec Action 2
 
                     ArrayList<Action> potPattern = new ArrayList<>(currentPattern);
                     if (lastAction.equals(act1))
@@ -110,32 +80,22 @@ public class Agent1 implements IAgent {
         }
     }
 
-    private Action followPattern(ArrayList<Action> patt) {
-        if (currentPattern == null || currentPattern.size() == 0)
-            return patt.get(0);
-        int index = 0;
-        for (int i = 0; i < currentPattern.size(); i++) {
-            if (currentPattern.get(i) != patt.get(i%patt.size())) {
-                System.out.println("ERROR : RETURNED NULL ACTION IN FOLLOWPATTERN");
-                return null;
-            }
-            index ++;
+    public Action surveyPattern(ArrayList<Action> patt, int depth) {
+        System.out.println("SURVEYING");
+        if (patt.size() < depth)
+            return null; // ERREUR
+        int cpt1 = 0;
+        int cpt2 = 0;
+        for (int i = patt.size() - depth; i < patt.size(); i++) {
+            if (patt.get(i) == act1)
+                cpt1++;
+            else
+                cpt2++;
         }
-        return patt.get(index%patt.size());
-    }
-
-    private void printPattern(ArrayList<Action> patt, String title) {
-        String str = "Pattern " + title + " : ";
-
-        if (patt == null) {
-            str += "null";
-        }
-        else {
-            for (Action a : patt)
-                str += a.toString() + " -> ";
-        }
-
-        System.out.println(str);
+        if (cpt2 > cpt1)
+            return act2;
+        else
+            return act1;
     }
 
 }

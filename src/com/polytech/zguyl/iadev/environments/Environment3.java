@@ -11,33 +11,33 @@ public class Environment3 implements IEnvironment{
     private static int streak = 0;
 
     @Override
-    public Result eval(Action action) {
+    public Result react(Action action) {
 
         if (streak == 0 && action == expected[1]) {
             streak++;
-            return new Result(true);
+            return Result.MOVE;
         }
         else if (streak == 0){
             streak = 0;
-            return new Result(false);
+            return Result.CHECK;
         }
 
         if (streak == 1 && action == expected[1]) {
             streak++;
-            return new Result(true);
+            return Result.MOVE;
         }
         else if (streak == 1){
             streak = 0;
-            return new Result(false);
+            return Result.CHECK;
         }
 
         if (streak == 2 && action == expected[0]) {
             streak = 0;
-            return new Result(true);
+            return Result.MOVE;
         }
         else {
             streak = 0;
-            return new Result(false);
+            return Result.CHECK;
         }
 
 

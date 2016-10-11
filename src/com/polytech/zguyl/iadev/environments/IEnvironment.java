@@ -9,7 +9,7 @@ public interface IEnvironment {
 
     Action[] expected = {Action.FOWARD, Action.BACKWARD};
 
-    Result eval(Action exp);
+    Result react(Action action);
 
 
 }

@@ -9,7 +9,7 @@ import com.polytech.zguyl.iadev.*;
 public class Environment1 implements IEnvironment {
 
     @Override
-    public Result eval(Action action) {
-        return (action == expected[0]) ? new Result(true) : new Result(false);
+    public Result react(Action action) {
+        return (action == expected[0]) ? Result.MOVE : Result.CHECK;
     }
 }

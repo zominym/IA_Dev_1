@@ -1,29 +1,38 @@
 package com.polytech.zguyl.iadev;
 
-import com.polytech.zguyl.iadev.agents.Agent1;
-import com.polytech.zguyl.iadev.environments.Environment5;
-import com.polytech.zguyl.iadev.environments.IEnvironment;
+import com.polytech.zguyl.iadev.agents.*;
+import com.polytech.zguyl.iadev.environments.*;
+import com.polytech.zguyl.iadev.motivations.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment env = new Environment5();
-        Agent2 agt = new Agent2();
+        IEnvironment environment = new Environment2();
+        IAgent agent = new Agent1();
+        IMotivation motivation = new Motivation1();
+
+        Action action;
+        Result result;
+        Interaction interaction;
+        int interactionValue;
+
         String actionString = "";
         String resultString = "";
 
         for (int i = 0; i < 100; i++) {
             System.out.println("LOOP NUMBER ------------ " + i);
 
-            Action a = agt.chooseAction();
-            Result res = env.eval(a);
-            agt.learn(res);
+            action = agent.chooseAction();
+            result = environment.react(action);
+            interaction = new Interaction(action, result);
+            interactionValue = motivation.evaluate(interaction);
+            agent.learn(interaction, interactionValue);
 
-            System.out.println(a.toString() + " -> " + res.toString());
+            System.out.println(action.toString() + " -> " + result.toString());
 
-            actionString += a.toString() + " ";
-            resultString += res.toInt() + " ";
+            actionString += action.toString() + " ";
+            resultString += result.toString() + " ";
         }
 
         System.out.println(actionString);

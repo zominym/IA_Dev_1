@@ -1,33 +1,34 @@
+package com.polytech.zguyl.iadev.environments;
+
+import com.polytech.zguyl.iadev.*;
+
 /**
  * Created by atanakar on 14/09/16.
  */
 public class EnvironmentPerso2 implements IEnvironment{
 
-    static int streak = 0;
+    private static int streak = 0;
 
-    public EnvironmentPerso2() {
-
-    }
 
     @Override
-    public Result eval(Action exp) {
-        Result ret = null;
+    public Result react(Action action) {
+        Result ret;
         if (streak < 10) {
-            if(exp.tag == 1)
-                ret = new Result(true);
+            if(action == expected[0])
+                ret = Result.MOVE;
             else {
-                ret = new Result(false);
+                ret = Result.CHECK;
                 streak = 0;
             }
             streak++;
         }
         else {
-            if (exp.tag == 1) {
-                ret = new Result(false);
+            if (action == expected[1]) {
+                ret = Result.CHECK;
                 streak = 0;
             }
             else
-                ret = new Result(true);
+                ret = Result.MOVE;
             streak++;
         }
 

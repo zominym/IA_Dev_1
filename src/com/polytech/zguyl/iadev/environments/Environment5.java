@@ -11,20 +11,20 @@ public class Environment5 implements IEnvironment {
     private int cpt = -1;
 
     @Override
-    public Result eval(Action action) {
+    public Result react(Action action) {
         cpt++;
         if(cpt < 10){
             if(action == expected[0])
-                return new Result(true);
-            return new Result(false);
+                return Result.MOVE;
+            return Result.CHECK;
         }
         else if (cpt < 20){
             if(action == expected[1])
-                return new Result(true);
-            return new Result(false);
+                return Result.MOVE;
+            return Result.CHECK;
         }
         else if (action == expected[0])
-            return new Result(true);
-        return new Result(false);
+            return Result.MOVE;
+        return Result.CHECK;
     }
 }

@@ -11,10 +11,10 @@ public class Environment4 implements IEnvironment {
     private int cpt = -1;
 
     @Override
-    public Result eval(Action action) {
+    public Result react(Action action) {
         cpt++;
         if((action == expected[0] && cpt < 10) || (action == expected[1] && cpt >= 10))
-            return new Result(true);
-        return new Result(false);
+            return Result.MOVE;
+        return Result.CHECK;
     }
 }

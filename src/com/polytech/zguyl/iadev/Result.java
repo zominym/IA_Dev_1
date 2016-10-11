@@ -3,17 +3,20 @@
  */
 package com.polytech.zguyl.iadev;
 
-public class Result {
+public enum Result {
 
-    public boolean value;
+    MOVE("Move"),
+    CHECK("Check"),
+    HIT("Hit");
 
-    public Result(boolean val) {
-        value = val;
+    private String tag;
+
+    Result(String tag) {
+        this.tag = tag;
     }
 
-    public String toString() {
-        return "" + value;
-    }
+    public String tag() { return tag; }
 
-    public int toInt() {if (value) return 1; else return 0;}
+    @Override
+    public String toString(){ return tag(); }
 }

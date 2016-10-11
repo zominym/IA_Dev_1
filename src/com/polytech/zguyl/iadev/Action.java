@@ -9,10 +9,13 @@ public enum Action {
     FOWARD("Foward"),
     BACKWARD("Backward");
 
-    private String tag = "";
+    private String tag;
 
-    Action(String tag) {this.tag = tag;}
+    Action(String tag) { this.tag = tag; }
 
-    public String tag() {return tag;}
+    public String tag() { return tag; }
+
+    @Override
+    public String toString(){ return tag(); }
 
 }
