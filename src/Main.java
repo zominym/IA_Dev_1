@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment env = new Environment3();
+        IEnvironment env = new Environment5();
         Agent2 agt = new Agent2();
 
         for (int i = 0; i < 20; i++) {
