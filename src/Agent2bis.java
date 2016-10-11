@@ -133,13 +133,30 @@ public class Agent2bis {
         return patt.get(index%patt.size());
     }
 
+    public Action surveyPattern(ArrayList<Action> patt, int depth) {
+        System.out.println("SURVEYING");
+        if (patt.size() < depth)
+            return null; // ERREUR
+        int cpt1 = 0;
+        int cpt2 = 0;
+        for (int i = patt.size() - depth; i < patt.size(); i++) {
+            if (patt.get(i) == act1)
+                cpt1++;
+            else
+                cpt2++;
+        }
+        if (cpt2 > cpt1)
+            return act2;
+        else
+            return act1;
+    }
+
     public void printPattern(ArrayList<Action> patt, String title) {
         String str = "Pattern " + title + " : ";
 
         if (patt == null) {
             str += "null";
-        }
-        else {
+        } else {
             for (Action a : patt)
                 str += a.toString() + " -> ";
         }

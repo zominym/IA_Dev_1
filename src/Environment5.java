@@ -13,7 +13,7 @@ public class Environment5 implements IEnvironment {
                 return new Result(true);
             return new Result(false);
         }
-        else if (cpt == 10){
+        else if (cpt < 20){
             if(exp.tag == 2)
                 return new Result(true);
             return new Result(false);

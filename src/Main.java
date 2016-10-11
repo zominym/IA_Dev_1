@@ -2,10 +2,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment env = new Environment5();
-        Agent2 agt = new Agent2();
+        IEnvironment env = new EnvironmentPerso2();
+        Agent2bis agt = new Agent2bis();
+        String actionString = "";
+        String resultString = "";
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.println("LOOP NUMBER ------------ " + i);
 
             Action a = agt.chooseAction();
@@ -14,7 +16,12 @@ public class Main {
 
             System.out.println(a.toString() + " -> " + res.toString());
 
+            actionString += a.toString() + " ";
+            resultString += res.toInt() + " ";
         }
+
+        System.out.println(actionString);
+        System.out.println(resultString);
 
     }
 }

@@ -3,12 +3,10 @@
  */
 public class Environment2 implements IEnvironment {
 
-    int lastAction = 0;
+    int val = 2;
 
     @Override
     public Result eval(Action exp) {
-        if(exp.tag == lastAction)
-            return new Result(false);
-        return new Result(true);
+        return (exp.tag == val) ? new Result(true) : new Result(false);
     }
 }
