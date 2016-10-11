@@ -27,27 +27,28 @@ public class Agent2 implements IAgent {
         //We're looking for every composites interactions who have the same previos interaction as we do
         activesInteractions
                 .addAll(interactions.stream()
-                        .filter(i -> (i.isSameAsPrevious(previousInteraction)))
+                        .filter(i -> i.getPrevious().getLabel() == previousInteraction.getLabel())
                         .collect(Collectors.toList()));
+
 
         ArrayList<Proposal> proposals = new ArrayList<>();
         for(CompositeInteraction active: activesInteractions) {
-            Proposal tmp = new Proposal(active.getAction(), active.getWeight(), active.getNext().getValue());
-            int index = proposals.indexOf(tmp);
-            if(index < 0)
+            Proposal tmp = findByInteraction(proposals, active);
+            if(tmp == null){
+                tmp = new Proposal(active);
                 proposals.add(tmp);
+            }
             else{
-                proposals
-                        .get(index)
-                        .addProclivity(active.getWeight() * active.getNext().getNext().getValue());
+                 tmp.addProclivity(active);
             }
         }
         Collections.sort(proposals);
 
+        //If the proposals are good, we chose one
         if(proposals.size() > 0) {
             for(int i = 0; i < proposals.size(); i++)
-                if(proposals.get(i).proclivity > 0)
-                    return proposals.get(i).action;
+                if(proposals.get(i).getProclivity() > 0)
+                    return proposals.get(i).getAction();
         }
 
         Action tmp = actionsToTry.remove(0);
@@ -57,50 +58,65 @@ public class Agent2 implements IAgent {
 
     @Override
     public void learn(Action action, Result result, int interactionValue) {
-        boolean reinforced = false;
-
-        ArrayList<CompositeInteraction> existingInteractions = new ArrayList<>();
-        CompositeInteraction tmp = null;
-
         //We're looking if the interaction exist already
-        for (CompositeInteraction i: interactions) {
-            if(i.getAction() == action && i.getResult() == result){
-                i.reinforce();
-                reinforced = true;
-                tmp = i;
-                break;
-            }
-        }
+        CompositeInteraction tmp = findByLabel(action, result);
+
         //If it's not, we gonna create a new one
-        if(!reinforced){
+        if(tmp == null){
             tmp = new CompositeInteraction(previousInteraction, action, result, interactionValue);
             interactions.add(tmp);
         }
 
-        if(previousInteraction != null) {
+        //If we have a previous interaction, we set the current to next
+        if(previousInteraction != null)
             previousInteraction.setNext(tmp);
-        }
 
         previousInteraction = tmp;
+    }
+
+    private Proposal findByInteraction(ArrayList<Proposal> proposals, CompositeInteraction interaction){
+        for (Proposal p:proposals)
+            if(p.getAction() == interaction.getAction())
+                return p;
+        return null;
+    }
+
+    private CompositeInteraction findByLabel(Action action, Result result){
+        String label = action.toString()+result.toString();
+        for (CompositeInteraction i: interactions) {
+            if(label.equals(i.getLabel()))
+                return i;
+        }
+        return null;
     }
 
 }
 
 class Proposal implements Comparable<Proposal> {
 
-    Proposal(Action a, int w, int v) {
-        action = a;
-        proclivity = w * v;
+    private Action action;
+    private Integer proclivity;
+
+    public Action getAction() {
+        return action;
     }
 
-    Action action;
-    Integer proclivity;
+    Integer getProclivity() {
+        System.out.println("PROCLIVITY A:"+action+" - P:"+proclivity);
+        return proclivity;
+    }
+
+    Proposal(CompositeInteraction interaction) {
+        action = interaction.getAction();
+        proclivity = interaction.getNext().getValue() * interaction.getWeight();
+    }
+
+    void addProclivity(CompositeInteraction interaction){
+        proclivity +=interaction.getNext().getValue() * interaction.getWeight();
+    }
 
     public int compareTo(Proposal p2){
         return proclivity.compareTo(p2.proclivity);
     }
 
-    void addProclivity(int val){
-        proclivity += val;
-    }
 }

@@ -11,73 +11,41 @@ public class CompositeInteraction {
     private CompositeInteraction previous, next;
     private Action action;
     private Result result;
+    private String label;
 
     public Action getAction(){return action;}
     public Result getResult(){return result;}
     public int getValue(){return value;}
     public int getWeight(){return weight;}
-    public CompositeInteraction getPrevious() {return previous;}
+    public String getLabel(){return label;}
+    public CompositeInteraction getPrevious() {
+        if(previous == null)
+            previous = new CompositeInteraction();
+        return previous;
+    }
     public CompositeInteraction getNext() {return next;}
     public void setNext(CompositeInteraction next) {this.next = next;}
 
-    CompositeInteraction(Action action, Result result, int value) {
-        this.action = action;
-        this.result = result;
-        weight = FIRST_WEIGHT;
-        this.value = value;
-    }
+    public CompositeInteraction(){
 
+    }
     public CompositeInteraction(CompositeInteraction previousInteraction, Action action, Result result, int value){
         this.action = action;
         this.result = result;
+        this.label = action.toString()+result.toString();
         weight = FIRST_WEIGHT;
         this.value = value;
         this.previous = previousInteraction;
-    }
-
-    CompositeInteraction(Action action, Result result, CompositeInteraction nextInteraction, int value){
-        this.action = action;
-        this.result = result;
-        weight = FIRST_WEIGHT;
-        this.value = value;
-        this.next = nextInteraction;
-    }
-
-    CompositeInteraction(CompositeInteraction previousInteraction, Action action, Result result, CompositeInteraction nextInteraction, int value){
-        this.action = action;
-        this.result = result;
-        weight = FIRST_WEIGHT;
-        this.value = value;
-        this.previous = previousInteraction;
-        this.next = nextInteraction;
     }
 
     public void reinforce(){
         weight += INCREASE_WEIGHT;
     }
 
-    public void diminish(){
-        weight -= DECREASE_WEIGHT;
-    }
-
-    public boolean equals(CompositeInteraction object){
-        if( object.getAction() != action
-         || object.getResult() != result
-         || object.getNext()   != next
-         || object.getValue()  != value
-         || object.getWeight() != weight)
-            return false;
-        return true;
-    }
-
     public boolean isSameAsPrevious(CompositeInteraction previousInteraction) {
-        if(previous == null)
+        if(previous == null || previousInteraction == null)
             return false;
-        if(previousInteraction == null)
-            return false;
-        if(previousInteraction.getAction() != previous.action)
-            return false;
-        if(previousInteraction.getResult() != previous.result)
+        if(previousInteraction.label != previous.label)
             return false;
         return true;
     }
