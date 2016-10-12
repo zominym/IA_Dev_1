@@ -22,6 +22,12 @@ public class Agent2 implements IAgent {
 
     @Override
     public Action chooseAction() {
+
+        if(actionsToTry.isEmpty()){
+            actionsToTry.add(Action.A1);
+            actionsToTry.add(Action.A2);
+        }
+
         ArrayList<CompositeInteraction> activesInteractions = new ArrayList<>();
 
         //We're looking for every composites interactions who have the same previos interaction as we do
@@ -49,6 +55,13 @@ public class Agent2 implements IAgent {
             for (Proposal proposal : proposals)
                 if (proposal.getProclivity() > 0)
                     return proposal.getAction();
+                else
+                    actionsToTry.remove(proposal.getAction());
+        }
+
+        if(actionsToTry.isEmpty()){
+            actionsToTry.add(Action.A1);
+            actionsToTry.add(Action.A2);
         }
 
         Action tmp = actionsToTry.remove(0);
@@ -65,6 +78,10 @@ public class Agent2 implements IAgent {
         if(tmp == null){
             tmp = new CompositeInteraction(previousInteraction, action, result, interactionValue);
             interactions.add(tmp);
+        }
+        else {
+            tmp.setValue(interactionValue);
+            tmp.reinforce();
         }
 
         //If we have a previous interaction, we set the current to next
@@ -108,7 +125,7 @@ class Proposal implements Comparable<Proposal> {
 
     Proposal(CompositeInteraction interaction) {
         action = interaction.getAction();
-        proclivity = interaction.getNext().getValue() * interaction.getWeight();
+        proclivity = interaction.getValue() * interaction.getWeight();
     }
 
     void addProclivity(CompositeInteraction interaction){

@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment environment = new Environment1();
+        IEnvironment environment = new Environment5();
         IAgent agent = new Agent2();
         IMotivation motivation = new Motivation4();
 
@@ -32,7 +32,7 @@ public class Main {
 
             actionString += action.toInt() + " ";
             resultString += result.toInt() + " ";
-            if (interactionValue == 1)
+            if (interactionValue > 0)
                 valueString += "+ ";
             else
                 valueString += "- ";

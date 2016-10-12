@@ -5,25 +5,16 @@ package com.polytech.zguyl.iadev;
 
 public enum Result {
 
-    R1("R1"),
-    R2("R2");
+    R1("R1", 1),
+    R2("R2", 2);
 
     private String tag;
+    private int numb;
 
-    Result(String tag) {
-        this.tag = tag;
-    }
-
-    public String tag() { return tag; }
+    Result(String tag, int numb) { this.tag = tag; this.numb = numb; }
 
     @Override
-    public String toString(){ return tag(); }
+    public String toString(){ return tag; }
 
-    public int toInt() {
-        if (this == R1)
-            return 1;
-        if (this == R2)
-            return 2;
-        else return 0;
-    }
+    public int toInt() { return numb; }
 }

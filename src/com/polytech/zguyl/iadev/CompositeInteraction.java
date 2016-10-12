@@ -51,4 +51,8 @@ public class CompositeInteraction {
             return false;
         return previousInteraction.label.equals(previous.label);
     }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }
