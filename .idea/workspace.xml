@@ -4,8 +4,8 @@
     <list default="true" id="756796f9-70d2-4981-b7ab-86574d9e382b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/Main.java" afterPath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/Environment2.java" afterPath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/Environment2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/motivations/Motivation4.java" afterPath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/motivations/Motivation4.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/agents/Agent2.java" afterPath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/agents/Agent2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/EnvironmentPerso1.java" afterPath="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/EnvironmentPerso1.java" />
     </list>
     <ignored path="ia_dev_1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="264">
+              <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EnvironmentPerso1.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/EnvironmentPerso1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="826">
+              <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -72,13 +82,15 @@
       <file leaf-file-name="Agent2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/agents/Agent2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1650">
-              <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+            <state relative-caret-position="661">
+              <caret line="138" column="17" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
               <folding>
                 <element signature="e#3665#3666#0" expanded="true" />
                 <element signature="e#3694#3695#0" expanded="true" />
                 <element signature="e#4008#4009#0" expanded="true" />
                 <element signature="e#4070#4071#0" expanded="true" />
+                <element signature="e#4110#4111#0" expanded="true" />
+                <element signature="e#4170#4171#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,10 +121,11 @@
         <option value="$PROJECT_DIR$/src/Environment4.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Environment5.java" />
-        <option value="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/agents/Agent2.java" />
         <option value="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/motivations/Motivation4.java" />
         <option value="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/Environment2.java" />
+        <option value="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/agents/Agent2.java" />
         <option value="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/EnvironmentPerso1.java" />
       </list>
     </option>
   </component>
@@ -901,16 +914,24 @@
       <workItem from="1476173347010" duration="1274000" />
       <workItem from="1476252321751" duration="268000" />
       <workItem from="1476274844540" duration="143000" />
-      <workItem from="1476294137201" duration="3563000" />
+      <workItem from="1476294137201" duration="5154000" />
     </task>
+    <task id="LOCAL-00001" summary="Correct Environment2">
+      <created>1476298337890</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1476298337890</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7075000" />
+    <option name="totallyTimeSpent" value="8666000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2750" height="1770" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -920,7 +941,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980832" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291474" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291474" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -950,6 +971,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Correct Environment2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct Environment2" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -978,6 +1003,8 @@
             <element signature="e#3694#3695#0" expanded="true" />
             <element signature="e#4008#4009#0" expanded="true" />
             <element signature="e#4070#4071#0" expanded="true" />
+            <element signature="e#4110#4111#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1011,19 +1038,6 @@
     <entry file="file://$PROJECT_DIR$/src/Environment1.java" />
     <entry file="file://$PROJECT_DIR$/src/Environment5.java" />
     <entry file="file://$PROJECT_DIR$/src/Environment4.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/agents/Agent2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-          <folding>
-            <element signature="e#3665#3666#0" expanded="true" />
-            <element signature="e#3694#3695#0" expanded="true" />
-            <element signature="e#4008#4009#0" expanded="true" />
-            <element signature="e#4070#4071#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/motivations/Motivation3.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1050,10 +1064,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/agents/Agent2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="138" column="17" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
+          <folding>
+            <element signature="e#3665#3666#0" expanded="true" />
+            <element signature="e#3694#3695#0" expanded="true" />
+            <element signature="e#4008#4009#0" expanded="true" />
+            <element signature="e#4070#4071#0" expanded="true" />
+            <element signature="e#4110#4111#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="264">
+          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/polytech/zguyl/iadev/environments/EnvironmentPerso1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="826">
+          <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
           <folding />
         </state>
       </provider>

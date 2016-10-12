@@ -136,7 +136,7 @@ class Proposal implements Comparable<Proposal> {
     }
 
     public int compareTo(Proposal p2){
-        return proclivity.compareTo(p2.proclivity);
+        return - proclivity.compareTo(p2.proclivity);
     }
 
 }

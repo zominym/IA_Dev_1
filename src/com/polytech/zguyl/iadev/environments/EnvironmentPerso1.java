@@ -15,29 +15,29 @@ public class EnvironmentPerso1 implements IEnvironment{
 
         if (streak == 0 && action == expected[0]) {
             streak++;
-            return Result.R1;
+            return Result.R2;
         }
         else if (streak == 0){
             streak = 0;
-            return Result.R2;
+            return Result.R1;
         }
 
         if (streak == 1 && action == expected[1]) {
             streak++;
-            return Result.R1;
+            return Result.R2;
         }
         else if (streak == 1){
             streak = 0;
-            return Result.R2;
+            return Result.R1;
         }
 
         if (streak == 2 && action == expected[0]) {
             streak = 0;
-            return Result.R1;
+            return Result.R2;
         }
         else {
             streak = 0;
-            return Result.R2;
+            return Result.R1;
         }
 
 
