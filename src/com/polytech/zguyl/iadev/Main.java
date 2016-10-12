@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment environment = new Environment1();
+        IEnvironment environment = new Environment3();
         IAgent agent = new Agent2();
-        IMotivation motivation = new Motivation4();
+        IMotivation motivation = new Motivation3();
 
         Action action;
         Result result;

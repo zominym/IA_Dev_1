@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
  */
 public class Agent2 implements IAgent {
 
-    private CompositeInteraction previousInteraction;
-    private ArrayList<CompositeInteraction> interactions = new ArrayList<>();
+    private Interaction previousInteraction;
+    private ArrayList<Coupling> couplings = new ArrayList<>();
     private ArrayList<Action> actionsToTry = new ArrayList<>();
 
     public Agent2(){
@@ -22,18 +22,23 @@ public class Agent2 implements IAgent {
 
     @Override
     public Action chooseAction() {
-        ArrayList<CompositeInteraction> activesInteractions = new ArrayList<>();
 
-        //We're looking for every composites interactions who have the same previos interaction as we do
-        activesInteractions
-                .addAll(interactions.stream()
-                        .filter(i -> i.getPrevious().getLabel().equals(previousInteraction.getLabel()))
-                        .collect(Collectors.toList()));
+        actionsToTry = new ArrayList<>();
+        actionsToTry.add(Action.A1);
+        actionsToTry.add(Action.A2);
 
+        ArrayList<Coupling> activeCouplings = new ArrayList<>();
+
+        //We're looking for every composites interctions who have the same previos interaction as we do
+        if (previousInteraction != null)
+            activeCouplings
+                    .addAll(couplings.stream()
+                            .filter(c -> c.previous.equals(previousInteraction))
+                            .collect(Collectors.toList()));
 
         ArrayList<Proposal> proposals = new ArrayList<>();
-        for(CompositeInteraction active: activesInteractions) {
-            Proposal tmp = findByInteraction(proposals, active);
+        for(Coupling active: activeCouplings) {
+            Proposal tmp = findByInteraction(proposals, active.next);
             if(tmp == null){
                 tmp = new Proposal(active);
                 proposals.add(tmp);
@@ -49,6 +54,13 @@ public class Agent2 implements IAgent {
             for (Proposal proposal : proposals)
                 if (proposal.getProclivity() > 0)
                     return proposal.getAction();
+                else {
+                    actionsToTry.remove(proposal.getAction());
+                }
+        }
+
+        if(actionsToTry.isEmpty()){
+            actionsToTry.add(proposals.get(0).getAction());
         }
 
         Action tmp = actionsToTry.remove(0);
@@ -59,33 +71,41 @@ public class Agent2 implements IAgent {
     @Override
     public void learn(Action action, Result result, int interactionValue) {
         //We're looking if the interaction exist already
-        CompositeInteraction tmp = findByLabel(action, result);
+        Coupling tmp = null;
+        if (previousInteraction != null)
+            tmp = findByLabel(previousInteraction, new Interaction(action, result));
 
-        //If it's not, we gonna create a new one
-        if(tmp == null){
-            tmp = new CompositeInteraction(previousInteraction, action, result, interactionValue);
-            interactions.add(tmp);
+        //If it doesn't exist, we gonna create a new one
+        if(tmp == null && previousInteraction != null){
+            tmp = new Coupling(previousInteraction, new Interaction(action, result), interactionValue);
+            couplings.add(tmp);
         }
+        else if (tmp != null)//If it exists e increse the weight
+            tmp.reinforce();
 
-        //If we have a previous interaction, we set the current to next
-        if(previousInteraction != null)
-            previousInteraction.setNext(tmp);
+        previousInteraction = new Interaction(action, result);
 
-        previousInteraction = tmp;
+        printCouplings();
     }
 
-    private Proposal findByInteraction(ArrayList<Proposal> proposals, CompositeInteraction interaction){
+    private void printCouplings() {
+        for (Coupling c : couplings) {
+            System.out.println(c.getLabel() + ";" + c.value + ";" + c.weight);
+        }
+    }
+
+    private Proposal findByInteraction(ArrayList<Proposal> proposals, Interaction interaction){
         for (Proposal p:proposals)
-            if(p.getAction() == interaction.getAction())
+            if(p.getAction() == interaction.action)
                 return p;
         return null;
     }
 
-    private CompositeInteraction findByLabel(Action action, Result result){
-        String label = action.toString()+result.toString();
-        for (CompositeInteraction i: interactions) {
-            if(label.equals(i.getLabel()))
-                return i;
+    private Coupling findByLabel(Interaction iter1, Interaction iter2){
+        String label = iter1.getLabel()+iter2.getLabel();
+        for (Coupling c: couplings) {
+            if(label.equals(c.getLabel()))
+                return c;
         }
         return null;
     }
@@ -106,13 +126,13 @@ class Proposal implements Comparable<Proposal> {
         return proclivity;
     }
 
-    Proposal(CompositeInteraction interaction) {
-        action = interaction.getAction();
-        proclivity = interaction.getNext().getValue() * interaction.getWeight();
+    Proposal(Coupling coupling) {
+        action = coupling.next.action;
+        proclivity = coupling.value * coupling.weight;
     }
 
-    void addProclivity(CompositeInteraction interaction){
-        proclivity +=interaction.getNext().getValue() * interaction.getWeight();
+    void addProclivity(Coupling coupling){
+        proclivity += coupling.value * coupling.weight;
     }
 
     public int compareTo(Proposal p2){

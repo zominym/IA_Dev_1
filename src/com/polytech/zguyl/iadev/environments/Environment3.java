@@ -13,34 +13,39 @@ public class Environment3 implements IEnvironment{
     @Override
     public Result react(Action action) {
 
-        if (streak == 0 && action == expected[1]) {
-            streak++;
-            return Result.R1;
-        }
-        else if (streak == 0){
-            streak = 0;
-            return Result.R2;
-        }
-
-        if (streak == 1 && action == expected[1]) {
-            streak++;
-            return Result.R1;
-        }
-        else if (streak == 1){
-            streak = 0;
-            return Result.R2;
+        if (streak == 0) {
+            if (action == expected[1]) {
+                streak++;
+                return Result.R1;
+            }
+            else{
+                streak = 0;
+                return Result.R2;
+            }
         }
 
-        if (streak == 2 && action == expected[0]) {
-            streak = 0;
-            return Result.R1;
-        }
-        else {
-            streak = 0;
-            return Result.R2;
+        if (streak == 1) {
+            if (action == expected[1]) {
+                streak++;
+                return Result.R1;
+            }
+            else{
+                streak = 0;
+                return Result.R2;
+            }
         }
 
+        if (streak == 2) {
+            if (action == expected[0]) {
+                streak = 0;
+                return Result.R1;
+            }
+            else{
+                streak = 0;
+                return Result.R2;
+            }
+        }
 
+        return null;
     }
-
 }
