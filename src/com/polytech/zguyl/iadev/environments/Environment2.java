@@ -19,7 +19,6 @@ public class Environment2 implements IEnvironment {
         }
         else {
             ret = Result.R1;
-            lastAction = null;
         }
         return ret;
     }

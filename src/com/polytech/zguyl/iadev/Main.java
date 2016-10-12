@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IEnvironment environment = new Environment3();
+        IEnvironment environment = new Environment2();
         IAgent agent = new Agent2();
-        IMotivation motivation = new Motivation3();
+        IMotivation motivation = new Motivation4();
 
         Action action;
         Result result;
@@ -20,7 +20,7 @@ public class Main {
         String resultString = "";
         String valueString = "";
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 30; i++) {
             System.out.println("LOOP NUMBER ------------ " + i);
 
             action = agent.chooseAction();
