@@ -1137,7 +1137,7 @@
       <workItem from="1476177228148" duration="445000" />
       <workItem from="1476177737907" duration="20247000" />
       <workItem from="1476202384050" duration="11218000" />
-      <workItem from="1476247376385" duration="1156000" />
+      <workItem from="1476247376385" duration="1176000" />
     </task>
     <task id="LOCAL-00001" summary="Abstract the agent&#10;">
       <created>1476185322117</created>
@@ -1181,11 +1181,18 @@
       <option name="project" value="LOCAL" />
       <updated>1476217558060</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Improve Agent2">
+      <created>1476248554466</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1476248554466</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35938000" />
+    <option name="totallyTimeSpent" value="35958000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1245,7 +1252,8 @@
     <MESSAGE value="Change Result by an enum type&#10;Add the Interaction&#10;Add Motivations&#10;The agent learn by motivation and interaction now" />
     <MESSAGE value="A" />
     <MESSAGE value="Modify Agent2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modify Agent2" />
+    <MESSAGE value="Improve Agent2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve Agent2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
